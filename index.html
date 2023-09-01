@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUID Generator</title>
+</head>
+<body>
+
+<h2>Key Backdoor</h2>
+
+<label for="amount">S&Box Backdoor:</label>
+<input type="number" id="amount" value="5">
+
+<button onclick="generateAndDisplay()">Generate Keys</button>
+
+<ul id="guidList"></ul>
+
+<script>
+    function generateGuid() {
+        const r = s => Array.from({length: s}).map(() => '0123456789ABCDEF'[Math.floor(Math.random() * 16)]).join('');
+        return `${r(8)}-${r(4)}-4${r(3)}-${r(4)}-${r(12)}  Expires in 8 days`;
+    }
+
+    function generateAndDisplay() {
+        const amount = parseInt(document.getElementById('amount').value, 10);
+        const guidList = document.getElementById('guidList');
+        guidList.innerHTML = '';
+
+        for(let i = 0; i < amount; i++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = generateGuid();
+            guidList.appendChild(listItem);
+        }
+    }
+</script>
+
+</body>
+</html>
